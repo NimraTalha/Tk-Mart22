@@ -84,13 +84,13 @@ export default function CheckoutPage() {
       }
 
       console.log('Attempting navigation to success page...'); // Debug log
-      
+
       // Navigate to success page
       router.replace('/checkout/success');
-      
+
       // Fallback navigation after a short delay if replace doesn't work
       setTimeout(() => {
-        if (window.location.pathname !== '/checkout/success') {
+        if (typeof window !== 'undefined' && window.location.pathname !== '/checkout/success') {
           console.log('Fallback navigation triggered'); // Debug log
           window.location.href = '/checkout/success';
         }

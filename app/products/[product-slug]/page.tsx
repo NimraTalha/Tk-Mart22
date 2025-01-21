@@ -33,7 +33,7 @@ export default function ProductPage() {
 
                 console.log('Raw params:', params);
                 console.log('Extracted slug:', slug);
-                
+               
                 if (!slug) {
                     console.error('No slug provided in URL parameters');
                     setError('Invalid product URL');

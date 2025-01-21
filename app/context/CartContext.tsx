@@ -32,7 +32,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       setItems(JSON.parse(savedCart));
     }
   }, []);
-
+ 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(items));
