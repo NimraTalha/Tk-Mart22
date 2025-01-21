@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -67,7 +66,7 @@ const FeaturedCategories = () => {
                                 transform: `translateX(-${currentIndex * (100 / totalPages)}%)`
                             }}
                         >
-                            {getCurrentCategories().map((category: any) => (
+                            {getCurrentCategories().map((category:any) => (
                                 <div 
                                     key={category._id} 
                                     className="flex-none w-[calc(100%/6-1rem)] group cursor-pointer"
@@ -111,9 +110,7 @@ const FeaturedCategories = () => {
                         <button
                             key={index}
                             onClick={() => setCurrentIndex(index)}
-                            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                                currentIndex === index ? 'bg-yellow-600' : 'bg-yellow-200'
-                            }`}
+                            className={`w-2 h-2 rounded-full transition-colors duration-300 ${currentIndex === index ? 'bg-yellow-600' : 'bg-yellow-200'}`}
                         />
                     ))}
                 </div>

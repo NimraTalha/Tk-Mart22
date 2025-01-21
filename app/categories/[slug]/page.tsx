@@ -54,6 +54,7 @@ export default function CategoryPage() {
           }`,
           { slug }
         );
+        
 
         const categoryDetails = await client.fetch(
           groq`*[_type == "category" && slug.current == $slug][0]{

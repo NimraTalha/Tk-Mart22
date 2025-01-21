@@ -16,14 +16,6 @@ interface Product {
     description: string;
     price: number;
     image: any;
-    ingredients?: string[];
-    nutritionalInfo?: {
-        calories?: number;
-        protein?: number;
-        carbs?: number;
-        fat?: number;
-    };
-    allergens?: string[];
 }
 
 export default function ProductPage() {
@@ -37,9 +29,8 @@ export default function ProductPage() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                // Get slug from params using the correct parameter name
                 const slug = params?.['product-slug'] || params?.slug;
-                
+
                 console.log('Raw params:', params);
                 console.log('Extracted slug:', slug);
                 
@@ -55,15 +46,12 @@ export default function ProductPage() {
                     name,
                     description,
                     price,
-                    image,
-                    ingredients,
-                    nutritionalInfo,
-                    allergens
+                    image
                 }`;
 
                 console.log('Executing query with slug:', slug);
                 const result = await client.fetch<Product>(query, { slug });
-                
+
                 console.log('Fetched product result:', result);
                 
                 if (!result) {
@@ -172,53 +160,14 @@ export default function ProductPage() {
                             Add to Cart - Rs{product.price * quantity}
                         </button>
 
-                        {/* Additional Information */}
+                        {/* Product Description (without nutritional or allergens) */}
                         <div className="space-y-6">
-                            {product.ingredients && (
+                            {product.description && (
                                 <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                        Ingredients
-                                    </h3>
-                                    <ul className="list-disc list-inside text-gray-600">
-                                        {product.ingredients.map((ingredient, index) => (
-                                            <li key={index}>{ingredient}</li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-
-                            {product.nutritionalInfo && (
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                        Nutritional Information
-                                    </h3>
-                                    <div className="grid grid-cols-2 gap-4 text-gray-600">
-                                        {product.nutritionalInfo.calories && (
-                                            <div>Calories: {product.nutritionalInfo.calories}kcal</div>
-                                        )}
-                                        {product.nutritionalInfo.protein && (
-                                            <div>Protein: {product.nutritionalInfo.protein}g</div>
-                                        )}
-                                        {product.nutritionalInfo.carbs && (
-                                            <div>Carbs: {product.nutritionalInfo.carbs}g</div>
-                                        )}
-                                        {product.nutritionalInfo.fat && (
-                                            <div>Fat: {product.nutritionalInfo.fat}g</div>
-                                        )}
-                                    </div>
-                                </div>
-                            )}
-
-                            {product.allergens && (
-                                <div>
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                                        Allergen Information
-                                    </h3>
-                                    <ul className="list-disc list-inside text-gray-600">
-                                        {product.allergens.map((allergen, index) => (
-                                            <li key={index}>{allergen}</li>
-                                        ))}
-                                    </ul>
+                                    <p className="text-lg font-semibold text-gray-900 mb-2">
+                                        Description:
+                                    </p>
+                                    <p className="text-gray-600">{product.description}</p>
                                 </div>
                             )}
                         </div>
