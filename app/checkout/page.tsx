@@ -89,12 +89,14 @@ export default function CheckoutPage() {
       router.replace('/checkout/success');
 
       // Fallback navigation after a short delay if replace doesn't work
-      setTimeout(() => {
-        if (typeof window !== 'undefined' && window.location.pathname !== '/checkout/success') {
-          console.log('Fallback navigation triggered'); // Debug log
-          window.location.href = '/checkout/success';
-        }
-      }, 1000);
+      if (typeof window !== 'undefined') {
+        setTimeout(() => {
+          if (window.location.pathname !== '/checkout/success') {
+            console.log('Fallback navigation triggered'); // Debug log
+            window.location.href = '/checkout/success';
+          }
+        }, 1000);
+      }
 
     } catch (error) {
       console.error('Error in checkout process:', error);

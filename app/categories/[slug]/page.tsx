@@ -48,12 +48,11 @@ export default function CategoryPage() {
             price,
             image,
             "slug": slug.current,
-            ingredients,
-            nutritionalInfo,
-            allergens
+           
           }`,
           { slug }
         );
+        
         
 
         const categoryDetails = await client.fetch(

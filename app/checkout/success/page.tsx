@@ -1,11 +1,12 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function CheckoutSuccessPage() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // Check if we came from a valid checkout
@@ -13,8 +14,20 @@ export default function CheckoutSuccessPage() {
     if (!orders) {
       // If no orders exist, redirect to home
       router.replace('/');
+    } else {
+      // If orders exist, stop loading
+      setIsLoading(false);
     }
   }, [router]);
+
+  // Show loading state while checking orders
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-pink-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="text-gray-600">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-pink-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
