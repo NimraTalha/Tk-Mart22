@@ -16,14 +16,6 @@ interface Product {
   price: number;
   image: any;
   slug: string;
-  ingredients?: string[];
-  nutritionalInfo?: {
-    calories?: number;
-    protein?: number;
-    carbs?: number;
-    fat?: number;
-  };
-  allergens?: string[];
 }
 
 interface Category {
@@ -47,13 +39,10 @@ export default function CategoryPage() {
             description,
             price,
             image,
-            "slug": slug.current,
-           
+            "slug": slug.current
           }`,
           { slug }
         );
-        
-        
 
         const categoryDetails = await client.fetch(
           groq`*[_type == "category" && slug.current == $slug][0]{
